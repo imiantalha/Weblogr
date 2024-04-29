@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Blog</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="top-bar">
+        <span><b>Blog | New Post</b></span>
+    </div>
+    <div class="sidebar">
+        <div class="top-bar">
+            <span>Weblogr</span> 
+        </div>
+        <ul class="menu">
+            <li><a href="index.php">Home</a></li>
+            <li><a href='../registration/profile.php'>Profile</a></li>
+            <li><a href='new_post.html'>Start sharing</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="logout.php">Log Out</a></li>
+        </ul>
+    </div>
+
+        <form action="save_post.php" method="POST" enctype="multipart/form-data">
+            <input id="blogTitle" name="title" type="text" required placeholder="Enter Blog Title"><br>
+            <input type="file" name="uploadimage"><br><br>
+            <textarea id="blogPara" name="description" cols="50" rows="7" required placeholder="Description..."></textarea><br><br>
+            <button id="saveBtn" type="submit">Save Post</button>
+        </form>
+</body>
+</html>

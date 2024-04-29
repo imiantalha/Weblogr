@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="top-bar">
+        <span>Blogs</span> 
+    </div>
+    <ul class="menu">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href='../registration/profile.php'>Profile</a></li>
+        <li><a href='new_post.html'>Start sharing</a></li>
+        <li><a href="logout.php">Log Out</a></li>
+    </ul>
+</div>
+</body>
+
+<style>
+  .sidebar {
+  background-color: #f0f0f0;
+  width: 160px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.content {
+  margin-left: 2px; 
+  padding: 2px;
+}
+
+.sidebar a {
+  display: block;
+  padding: 2px;
+  text-align: left;
+  text-decoration: none;
+  color: #333;
+  margin-top: 20px;
+}
+
+.sidebar a:hover {
+  background-color: #ddd;
+}
+
+.sidebar .top-bar {
+  background-color:  #5a4c4c;
+}
+</style>
+</html>
+
