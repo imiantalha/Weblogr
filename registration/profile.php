@@ -2,7 +2,7 @@
     session_start();
     
     if (!isset($_SESSION["username"])) {
-        header("Location: ../registration/login.php");
+        header("Location: login.php");
         exit;
     }
 
@@ -18,13 +18,29 @@
         }
     }
 
+    // Fetch user's profile information from the profile table
+    $sql_profile = "SELECT * FROM profile WHERE user_id = $user_id";
+    $result_profile = $con->query($sql_profile);
+    if ($result_profile && $result_profile->num_rows > 0) {
+        $profile_data = $result_profile->fetch_assoc();
+        $full_name = $profile_data['full_name'];
+        $bio = $profile_data['bio'];
+        $profile_picture = $profile_data['profile_picture'];
+        if(empty($profile_picture)) {
+            $profile_picture = 'logo.PNG';
+        }
+    } else {
+        $full_name = 'Your name';
+        $bio = 'Bio';
+        $profile_picture = 'logo.PNG';
+    }
 
-    $sql = "SELECT COUNT(*) AS post_count FROM blogs WHERE user_id = $user_id";
-    $result = $con->query($sql);
-    $post_count = ($result && $result->num_rows > 0) ? $result->fetch_assoc()["post_count"] : 0;
+    // Count the number of posts for the user
+    $sql_post_count = "SELECT COUNT(*) AS post_count FROM blogs WHERE user_id = $user_id";
+    $result_post_count = $con->query($sql_post_count);
+    $post_count = ($result_post_count && $result_post_count->num_rows > 0) ? $result_post_count->fetch_assoc()["post_count"] : 0;
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -36,55 +52,23 @@
 </head>
 <body>
     <h2 class="profile-h2">Welcome to Your Weblogr's Profile</h2>
-    <div class="sidebar">
-        <div class="top-bar">
-            <span>Blogs</span> 
-        </div>
-        <ul class="menu">
-        <li><a href="../posts/index.php">Home</a></li>
-            <li><a href='profile.php'>Profile</a></li>
-            <li><a href='../posts/new_post.html'>Start sharing</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="logout.php">Log Out</a></li>
-        </ul>
-    </div>
+    
+    <?php include '../posts/sidebar.php'; ?>
+    
     <div class="profile-container">
         <div class="profile-picture">
-            <img src="../images/M.png" alt="Profile Picture">
+            <img src="<?php echo "../uploads/" . $profile_picture ?>" alt="Profile Picture">
         </div>
         <div class="user-info">
-                <h1>
-                <?php
-                    echo " " . strtoupper($_SESSION["username"]);
-                ?></h1>
+            <h1><?php echo $full_name ?></h1>
             <div class="stats">
-                <span>
-                    <strong>
-                    <?php echo $post_count ?>
-                    </strong>
-                    <br>
-                    Posts
-                </span>
-                <span>
-                    <strong>
-                       1
-                    </strong>
-                    <br>
-                    Followers
-                </span>
-                <span>
-                    <strong>0</strong>
-                    <br>
-                    Following
-                </span>
+                <span><strong><?php echo $post_count ?></strong><br>Posts</span>
+                <span><strong>1</strong><br>Followers</span>
+                <span><strong>0</strong><br>Following</span>
             </div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed arcu magna, tincidunt mattis pulvinar vel, pulvinar eget augue. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
-            <button class="profile-btn"><a href="../posts/user_posts.php"><b>My Posts</b></a></button>
-            <button class="profile-btn"><b>Edit Profile</b></button>
-            <button class="profile-btn"><a href="logout.php"><b>Log Out</b></a></button>
-
+            <p><?php echo $bio ?></p>
+            <br>
+            <a href="edit_profile.php"><b>Edit Profile</b></a>
         </div>
     </div>    
 </body>

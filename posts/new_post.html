@@ -18,19 +18,33 @@
         <ul class="menu">
             <li><a href="index.php">Home</a></li>
             <li><a href='../registration/profile.php'>Profile</a></li>
+            <li><a href="user_posts.php">My Posts</a></li>
             <li><a href='new_post.html'>Start sharing</a></li>
-            <li><a href="#">About</a></li>
+            <li><a href="draft_posts.php">Draft Posts</a></li>
             <li><a href="#">Services</a></li>
-            <li><a href="#">Contact</a></li>
             <li><a href="logout.php">Log Out</a></li>
         </ul>
     </div>
 
-        <form action="save_post.php" method="POST" enctype="multipart/form-data">
-            <input id="blogTitle" name="title" type="text" required placeholder="Enter Blog Title"><br>
-            <input type="file" name="uploadimage"><br><br>
-            <textarea id="blogPara" name="description" cols="50" rows="7" required placeholder="Description..."></textarea><br><br>
-            <button id="saveBtn" type="submit">Save Post</button>
-        </form>
+    <form action="save_post.php" method="POST" enctype="multipart/form-data">
+        <input id="blogTitle" name="title" type="text" required placeholder="Enter Blog Title"><br>
+        <input type="file" name="uploadimage"><br><br>
+        <textarea id="blogPara" name="description" cols="50" rows="7" required placeholder="Description..."></textarea><br>
+        <label for="category">Category: </label>
+        <select name="category" id="category" required style="width: 150px; text-align: center; font-size: 18px; color: #999;">
+            <option value="">--Category--</option>
+            <option value="education">Education</option>
+            <option value="technology">Technology</option>
+            <option value="travel">Travel</option>
+            <option value="food">Food</option>
+            <option value="fashion">Fashion</option>
+            <option value="sport">Sport</option>
+        </select>
+        <br>
+        <!-- checkbox for draft option -->
+        <input type="checkbox" id="draft" name="draft">
+        <label for="draft">Draft</label><br>
+        <button id="saveBtn" type="submit">Upload Post</button>
+    </form>
 </body>
 </html>

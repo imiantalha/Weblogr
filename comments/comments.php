@@ -9,7 +9,7 @@
 <body>
 
 <center>
-    <a href="../posts/index.php">Back</a>
+    <a href="../posts/index.php"><b>Back</b></a>
     <br>
 <?php
 include '../database/db.php';
@@ -34,7 +34,7 @@ if (isset($_GET['blog_id'])) {
         echo "<div class='date-container'>";
         echo "<span>" . date('d/m/Y', strtotime($row["created_date"])) . "</span><br><br>";
         echo "</div>";
-        echo "<img id='displayImage' src='../images/" . $row["image_path"] . "'><br>";
+        echo "<img id='displayImage' src='../images/" . $row["image"] . "'><br>";
         echo "<p id='displayPara'>" . $row["description"] . "</p>";
         echo "</div>";
         echo "Likes: " . $row['likes'];

@@ -15,11 +15,11 @@
         $phpmailer->setFrom('talhaarshad427@gmail.com', 'Weblogr');
         $phpmailer->addAddress($email);
         $phpmailer->Subject = 'Weblogr - OTP Verification';
-        $phpmailer->Body = "Your OTP for Weblogr registration is: $otp";
+        $phpmailer->Body = "Your OTP for Weblogr registration/password reset is: $otp";
 
         // Send email
         if ($phpmailer->send()) {
-            header("Location: otp_verification.php?email=$email");
+            header("Location: otp_verification.php?email=$email&reset=$reset");
             exit;
         } else {
             // Handle email sending failure

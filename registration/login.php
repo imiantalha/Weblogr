@@ -85,16 +85,17 @@ if (isset($_POST['username'])) {
           <input type="password" placeholder="Password" required="" name="password" id="password">
         </div>
         <div class="row">
-          <i class="fas fa-person-booth"></i>
           <select name="type" id="" class="row" style="width: 100%; text-align: center; font-size: 18px; color: #999;">
             <option value="user" selected>USER</option>
             <option value="admin">ADMIN</option>
           </select>
         </div>
         <div class="row button">
-          <input type="submit" value="Login" name="login">
+          <input type="submit" value="Login" name="login"> 
+          <a href="forgot_password.php" style="float:right;">Forgot Password?</a><br>
         </div>
-        <div class="signup-link">Not a member? <a href="signup.php">Signup now</a></div>
+        <br>
+        <div class="signup-link">Not a member? <a href="signup.php">Signup Now</a></div>
       </form>
     </div>
   </div>

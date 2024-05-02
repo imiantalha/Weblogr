@@ -65,10 +65,10 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confi
         $statement->execute();
         $insert = true;
 
-        // require 'vendor/autoload.php';
-        
+        require 'vendor/autoload.php';
+        $reset =false;
         // handle mail functions
-        // include 'mail.php';
+        include 'mail.php';
     }
 }
 

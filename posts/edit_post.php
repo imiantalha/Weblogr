@@ -34,26 +34,25 @@
             <span id="topBarTitle">Edit Post</span>
         </div>
 
-        <div class="sidebar">
-            <div class="top-bar">
-                <span>Weblogr</span> 
-            </div>
-            <ul class="menu">
-                <li><a href="index.php">Home</a></li>
-                <li><a href='../registration/profile.php'>Profile</a></li>
-                <li><a href='new_post.html'>Start sharing</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="logout.php">Log Out</a></li>
-            </ul>
-        </div>
+        <?php include 'sidebar.php'; ?>
+        
         <div class="writing-section">
         <form action="update_post.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="blog_id" value="<?php echo $blog_id; ?>">
             <input id="blogTitle" name="title" type="text" placeholder="Blog Title..." value="<?php echo $row['title']; ?>" autocomplete="off"><br>
             <input type="file" name="uploadimage"><br><br>
             <textarea id="blogPara" name="description" cols="50" rows="7" placeholder="description..." autocomplete="off"><?php echo $row['description']; ?></textarea><br><br>
+            <label for="category">Category: </label>
+            <select name="category" id="category" required style="width: 150px; text-align: center; font-size: 18px; color: #999;">
+                <option value="">--Category--</option>
+                <option value="education">Education</option>
+                <option value="technology">Technology</option>
+                <option value="travel">Travel</option>
+                <option value="food">Food</option>
+                <option value="fashion">Fashion</option>
+                <option value="sport">Sport</option>
+            </select>
+            <br><br>
             <button id="saveBtn" type="submit">Save Changes</button>
         </form>
         </div>

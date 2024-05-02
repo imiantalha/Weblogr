@@ -2,11 +2,14 @@
 
 $otp_match = false;
 
-// Check if the 'email' key exists in the $_GET array
-if (isset($_GET['email'])) {
+if (isset($_GET['email']) && isset($_GET['reset'])) {
     $email = $_GET['email'];
+    $reset = $_GET['reset'];
 
-    if (isset($_POST['otp1'])) {
+    if (isset($_POST['otp1']) && isset($_POST['otp2']) && isset($_POST['otp3']) &&
+        isset($_POST['otp4']) && isset($_POST['otp5']) && isset($_POST['otp6'])) {
+
+        // Validate OTP inputs
         $digit1 = $_POST['otp1'];
         $digit2 = $_POST['otp2'];
         $digit3 = $_POST['otp3'];
@@ -15,11 +18,14 @@ if (isset($_GET['email'])) {
         $digit6 = $_POST['otp6'];
 
         $entered_otp = $digit1 . $digit2 . $digit3 . $digit4 . $digit5 . $digit6;
+
         // Database connection
         include '../database/db.php';
 
         // Retrieve stored OTP
-        $select = "SELECT otp FROM users WHERE email = ? AND is_verified = 0";
+        $select = ($reset == "TRUE") ? "SELECT otp FROM users WHERE email = ? AND is_verified = 1" :
+                                        "SELECT otp FROM users WHERE email = ? AND is_verified = 0";
+        
         $statement = $con->prepare($select);
         $statement->bind_param("s", $email);
         $statement->execute();
@@ -30,6 +36,10 @@ if (isset($_GET['email'])) {
             $stored_otp = $row['otp'];
 
             if ($entered_otp == $stored_otp) {
+                if ($reset == "TRUE") {                    
+                    header("Location: reset_password.php");
+                    exit;
+                }
                 // Mark the user as verified in the database
                 $update = "UPDATE users SET is_verified = 1 WHERE email = ?";
                 $update_statement = $con->prepare($update);
@@ -37,23 +47,22 @@ if (isset($_GET['email'])) {
                 $update_statement->execute();
 
                 $otp_match = true;
-
-                // echo '<script> alert("You have successfully registered. You can now login."); </script>';
-                // Redirect to the login page
                 header("Location: success.php");
-                exit;
+                exit;  
                 
             } else {
                 // Set OTP match flag to false
                 $otp_match = false;
-                echo'<script> alert("Invalid OTP. Please try again."); </script>';
+                $error_message = "Invalid OTP. Please try again.";
             }
+        } else {
+            $error_message = "No user found with provided email.";
         }
     }
 } else { 
-
-    echo '<script> alert("Email not provided for OTP verification. Please try again..")</script>';
+    $error_message = "Email or reset flag not provided for OTP verification. Please try again.";
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +81,11 @@ if (isset($_GET['email'])) {
         <h1>OTP Verification</h1>
         <h6>Please check your email, we've sent an OTP</h6>
 
-        <form method="post" action="otp_verification.php?email=<?php echo $email; ?>">
+        <?php if (isset($error_message)) { ?>
+            <script> alert("<?php echo $error_message; ?>"); </script>
+        <?php } ?>
+
+        <form method="post">
             <div class="input-container">
                 <input type="number" name="otp1" class="otp-digit" min="0" max="9" maxlength="1" required oninput="manageFocus(this)">
                 <input type="number" name="otp2" class="otp-digit" min="0" max="9" maxlength="1" required oninput="manageFocus(this)">
@@ -81,7 +94,6 @@ if (isset($_GET['email'])) {
                 <input type="number" name="otp5" class="otp-digit" min="0" max="9" maxlength="1" required oninput="manageFocus(this)">
                 <input type="number" name="otp6" class="otp-digit" min="0" max="9" maxlength="1" required oninput="manageFocus(this)">
             </div>
-
 
             <button type="submit" class="otp-button">Verify</button>
             <br>
