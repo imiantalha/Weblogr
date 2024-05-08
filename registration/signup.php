@@ -88,41 +88,44 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'], $_POST['confi
 </head>
 
 <body>
-  <div class="container">
-  <div class="welcome">
+  <div class="center-items">
+    <div class="container">
+      <div class="welcome">
         <h1>Weblogr</h1>
-    </div>
-    <div class="wrapper">
-      <div class="title"><span>Registration Form</span></div>
+      </div>
+      <div class="wrapper">
+        <div class="title"><span>Registration Form</span></div>
 
-      <form onsubmit="return form_validation()" method="post">
-        <div class="row">
-          <i class="fas fa-user"></i>
-          <input type="text" placeholder="Full Name" required name="fullname" id="fullname">
-        </div>
-        <div class="row">
-          <i class="fas fa-envelope"></i>
-          <input type="email" placeholder="Email" required name="email" id="email">
-        </div>
-        <div class="row">
-          <i class="fas fa-user"></i>
-          <input type="text" placeholder="Username" required name="username" id="username" minlength="3">
-        </div>
-        <div class="row">
-          <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Password" required name="password" id="password" maxminlength="5" maxlength="10">
-        </div>
-        <div class="row">
-          <i class="fas fa-key"></i>
-          <input type="password" placeholder="Confirm password" required name="confirm_password" id="confirm_password" minlength="5" maxlength="10">
-        </div>
+        <form onsubmit="return form_validation()" method="post">
+          <div class="row">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Full Name" required name="fullname" id="fullname">
+          </div>
+          <div class="row">
+            <i class="fas fa-envelope"></i>
+            <input type="email" placeholder="Email" required name="email" id="email">
+          </div>
+          <div class="row">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Username" required name="username" id="username" minlength="3">
+          </div>
+          <div class="row">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" required name="password" id="password" maxminlength="5" maxlength="10">
+          </div>
+          <div class="row">
+            <i class="fas fa-key"></i>
+            <input type="password" placeholder="Confirm password" required name="confirm_password" id="confirm_password" minlength="5" maxlength="10">
+          </div>
 
-        <div class="row button">
-          <input type="submit" value="Signup" name="signup">
-        </div>
-        <div class="signup-link">Have an account? <a href="login.php">Login now</a></div>
-      </form>
+          <div class="row button">
+            <input type="submit" value="Signup" name="signup">
+          </div>
+          <div class="signup-link">Have an account? <a href="login.php">Login now</a></div>
+        </form>
+      </div>
     </div>
   </div>
+  
 </body>
 </html>

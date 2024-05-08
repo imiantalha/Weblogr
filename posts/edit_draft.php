@@ -26,10 +26,11 @@ if (isset($_GET['draft_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Draft</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 </head>
 <body>
     <div class="top-bar">
-        <span id="topBarTitle">Edit Draft</span>
+        <span id="top-bar-title">Edit Draft</span>
     </div>
 
     <?php include 'sidebar.php'; ?>
@@ -38,9 +39,9 @@ if (isset($_GET['draft_id'])) {
     <form action="save_post.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="draft_id" value="<?php echo $draft_id; ?>">
         <input type="hidden" name="from_draft" value="<?php echo $from_draft; ?>">
-        <input id="blogTitle" name="title" type="text" placeholder="Blog Title..." value="<?php echo $row['title']; ?>" autocomplete="off"><br>
+        <input id="blog-title" name="title" type="text" placeholder="Blog Title..." value="<?php echo $row['title']; ?>" autocomplete="off"><br>
         <input type="file" name="uploadimage"><br><br>
-        <textarea id="blogPara" name="description" cols="50" rows="7" placeholder="Description..." autocomplete="off"><?php echo $row['description']; ?></textarea><br><br>
+        <textarea id="blog-para" name="description" cols="50" rows="7" placeholder="Description..." autocomplete="off"><?php echo $row['description']; ?></textarea><br><br>
         <!-- category -->
         <select name="category" id="category" required style="width: 150px; text-align: center; font-size: 18px; color: #999;">
             <option value="">--Category--</option>
@@ -55,7 +56,7 @@ if (isset($_GET['draft_id'])) {
         <!-- checkbox for draft option -->
         <input type="checkbox" id="draft" name="draft">
         <label for="draft">Draft</label><br>
-        <button id="saveBtn" type="submit" name="save_draft">Upload</button>
+        <button id="save-btn" type="submit" name="save_draft">Upload</button>
     </form>
 
     </div>

@@ -54,7 +54,7 @@
           <input type="password" placeholder="Enter password" minlength="5" maxlength="8" required name="password" id="password">
         </div>
         <div class="row">
-          <i class="fas fa-lock"></i>
+          <i class="fas fa-key"></i>
           <input type="password" placeholder="Confime Password" minlength="5" maxlength="8" required name="confirm_password" id="confirm_password">
         </div>
         <div class="row button">

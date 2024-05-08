@@ -31,13 +31,18 @@ input {
   background-color: #bae2c0;
 }
 
+form input:focus {
+  border-color: #16a085;
+  box-shadow: inset 0px 0px 2px 2px rgba(26, 188, 156, 0.25);
+ }
+
 textarea {
   background-color: #bae2c0;
 }
 
-#blogTitle,
-#blogPara,
-#blogDate {
+#blog-title,
+#blog-para,
+#blog-date {
   outline: none;
   border: 1.5px solid rgb(138, 219, 159);
   color: #000000;
@@ -46,7 +51,7 @@ textarea {
   padding: 5px 5px;
 }
 
-#blogPara {
+#blog-para {
   resize: none;
 }
 
@@ -54,20 +59,35 @@ textarea {
   text-align: right;
 }
 
-#displayDate {
+#display-date {
   text-align: right;
 }
 
-#saveBtn {
+#save-btn {
   border: none;
   background: #007bff;
   color: #fff;
-  font-size: 17.5px;
-  padding: 7px 10px;
-  border-radius: 15px;
+  font-size: 18px;
+  padding: 4px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
+#save-btn button:hover {
+  background-color: #005abb;
+}
+
+#save-btn a {
+  margin: 0;
+  color: #fff;
+  text-decoration: none;
+}
+
+.notifications {
+  margin-left: 40%;
+  margin-bottom: 5px;
+  text-align:justify;
+}
 /* Specific to index.php */
 .all-posts-container {
   display: flex;
@@ -87,58 +107,52 @@ textarea {
   text-align: center; 
 }
 
-
-@media screen and (max-width: 768px) {
-  .all-posts-container {
-    padding: 0 10px; 
-    margin-bottom: 5px;
-  }
-  
-  .post-container {
-    width: 90%; /* Change width for small screens */
-  }
-}
-
-
-#displayTitle {
+#display-title {
   font-weight: bold;
   font-size: 22px; 
 }
 
 
-#displayPara {
+#display-para {
+  padding-top: 0;
+  margin-top: 0;
   text-align: justify;
 }
 
-#displayImage {
+p a {
+  padding-top: 0;
+  margin-top: 0;
+  text-decoration: none;
+  display: inline-flex;
+  font-size: 18px;
+}
+
+#display-image {
   width: 100%;
   height: 280px;
   border-radius: 15px;
 }
 
-/* Add styling for like button and comments */
-.like-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 5px 10px;
-  cursor: pointer;
-  display: inline-block;
-  margin-left: 0;
-  margin-right: 10px;
-  margin-bottom: 10px;
+.report {
+  text-align: right;
 }
 
-.comment-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
+.report a {
+  margin: 0;
+  margin-left: 90%;
+  padding: 0;
+}
+
+/* Add styling for like button and comments */
+.like-button { 
   cursor: pointer;
-  margin-right: 60%;
-  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.like-button a {
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .container {
@@ -147,8 +161,35 @@ textarea {
   text-align: justify;
 }
 
+form .filter {
+  text-align: center; 
+  font-size: 16px; 
+  border-radius: 7px;
+  /* background-color: #34db8d;  */
+  border:none;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+form .submit{
+  border-radius: 10px;
+  border: none; 
+  margin-left: 3px; 
+  /* background-color: #34db95;  */
+  padding-top: 1px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+form  button:hover {
+  color: #ffffff;
+  background-color: #007bff;
+}
+
 h1 {
   margin-bottom: 10px;
+  color: #fff;
   text-align: center;
 }
 
@@ -161,14 +202,18 @@ a {
 }
 
 /* sidebar */
-
 .sidebar {
   background-color: #f0f0f0;
-  width: 160px;
+  width: 130px;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
+}
+
+.menu li {
+  list-style-type: none;
+  display:block;
 }
 
 .content {
@@ -190,5 +235,61 @@ a {
 
 .sidebar .top-bar {
   background-color:  #5a4c4c;
+  font-size: 24px;
+}
+
+
+@media screen and (max-width: 768px) {
+
+  .all-posts-container {
+    padding: 0 10px; 
+    margin-bottom: 5px;
+  }
+  
+  .post-container {
+    width: 95%; /* Change width for small screens */
+  }
+
+  .post-container button {
+    margin-right: 3px;
+    margin-left: 0px;
+  }
+  .post-container a {
+    margin-left: 3px;
+  }
+
+  #blog-para{
+    max-width: 90%;
+  }
+
+  .notifications {
+    margin-left: 7px;
+  }
+  /* sidebar */
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0; 
+  }
+
+  .menu li {
+    margin: 5px;
+    flex: 0 0 calc(25% - 10px);
+    max-width: calc(25% - 10px);
+    list-style-type: none; 
+  }
+
+  .menu a {
+    margin: 0px;
+  }
+  /* .sidebar ul {
+    display: none; /* Hide the ul element on small screens */
+  /* }  */
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
 }
 

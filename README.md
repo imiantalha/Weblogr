@@ -38,3 +38,14 @@ CREATE TABLE draft_posts (
 );
 
 ALTER TABLE blogs AUTO_INCREMENT = 1;
+
+
+CREATE TABLE notifications (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    content VARCHAR(255),
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE followers ( id INT AUTO_INCREMENT PRIMARY KEY, blogger_id INT, follower_id INT, FOREIGN KEY (blogger_id) REFERENCES users(user_id), FOREIGN key (follower_id) REFERENCES users(user_id) );
+

@@ -17,11 +17,15 @@ body {
 }
 
 /* login.php */
-
+.center-items { 
+  align-items: center;
+  justify-content: center;
+}
 .container {
   max-width: 440px;
   padding: 0 20px;
   margin-left: 35%;
+  align-items: center;
   margin-top: 80px;
 }
 
@@ -208,90 +212,90 @@ button:hover {
   margin: 20px;
 }
 
-
-
 /* profile.php */
 .profile-container {
-    display: flex;
-    flex-wrap: wrap; 
-    width: 50%;
-    margin: 50px auto;
-    background-color: #bae2c0;
-    border-radius: 10px;
-  }
-  
-  .profile-picture {
-    width: 30%; 
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .profile-container img {
-    width: 100%; 
-    border-radius: 50%;
-  }
-  
-  .user-info {
-    width: 66%; 
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .profile-h2 {
-    color: white;
-    text-align: center;
-    margin-top: 30px;
-  }
+  display: flex;
+  flex-wrap: wrap; 
+  width: 50%;
+  margin: 50px auto;
+  background-color: #bae2c0;
+  border-radius: 10px;
+}
 
-  .profile-container h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .user-info p {
-    font-size: 16px;
-    line-height: 1.5;
-    margin-bottom: 15px;
-  }
-  
-  .stats {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .profile-btn {
-    background-color: #007bff;
-    font-size: 16px;
-    color: #fff;
-    padding: 5px 8px;
-    border: none;
-    border-radius: 7px;
-    cursor: pointer;
-    margin-right: 20px;
-    margin-bottom: 10px;
-  }
+.profile-picture {
+  width: 30%; 
+  padding: 20px;
+  box-sizing: border-box;
+}
 
-  .profile-btn a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  /* Responsiveness */
-  @media only screen and (max-width: 768px) {
-    .profile-container {
-      flex-direction: column;
-    }
-    .profile-picture,
-    .user-info {
-      width: 100%;
-    }
-  }
-  
+.edit {
+  width: 50%;
+  margin-left: 25%;
+}
+
+.profile-container img {
+  width: 100%; 
+  border-radius: 50%;
+}
+
+.user-info {
+  width: 66%; 
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.profile-h2 {
+  color: white;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.profile-container h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.user-info p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.profile-btn {
+  background-color: #007bff;
+  font-size: 18px;
+  color: #fff;
+  padding: 5px 8px;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}
+
+.profile-btn a {
+  color: white;
+  text-decoration: none;
+}
+
+.filter {
+  text-align: center; 
+  font-size: 16px; 
+  border-radius: 7px;
+  background-color: #b9d4c7; 
+  border:none;
+  cursor: pointer;
+  margin-top: 5px;
+}
 
   /* sidebar */
-
 .sidebar {
   background-color: #f0f0f0;
   width: 145px;
@@ -327,4 +331,53 @@ button:hover {
 
 .sidebar .top-bar {
   background-color:  #5a4c4c;
+}
+
+@media screen and (max-width: 768px) {
+ /* profile */
+  .profile-container {
+    width: 90%; 
+    margin: 2px auto; 
+  }
+
+  textarea, input {
+    max-width: 80%;
+  }
+
+  .profile-picture  {
+     display: none;
+  }
+
+  .user-info {
+    position: relative;
+    padding: 10px;
+  }
+
+  .edit {
+    margin: 3Px;
+  }
+  .menu {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px;
+    padding: 0; 
+  }
+
+/* sidebar */
+  .menu li {
+    margin: 0px;
+    flex: 0 0 calc(30% - 10px);
+    max-width: calc(30% - 10px);
+    list-style-type: none; 
+  }
+
+  .menu a {
+    margin: 0px;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
 }

@@ -40,13 +40,8 @@ if(!$is_draft  && empty($filename) && $from_draft) {
     }
 }
 
-$username = $_SESSION["username"];
-$sql = "SELECT user_id FROM users WHERE username = '$username'";
-$result = $con->query($sql);
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $user_id = $row['user_id'];
-}
+$username = strtoupper($_SESSION["username"]);
+$user_id = $_SESSION['user_id'];
 
 //draft or not
 if ($is_draft) {
@@ -69,6 +64,26 @@ if ($is_draft) {
             VALUES ('$title', NOW() , '$filename', '$description', '$category', '$user_id')";
 
     if ($con->query($sql_insert_blogs) === TRUE) {
+
+        // If it's not a draft post, notify followers
+        $notification_content = "$username posted a new post.";
+        $insert_notification = "INSERT INTO notifications (content, user_id) VALUES (?, ?)";
+        $stmt_notification = $con->prepare($insert_notification);
+        
+        // Get the followers of the user
+        $get_followers = "SELECT follower_id FROM followers WHERE blogger_id = ?";
+        $stmt_get_followers = $con->prepare($get_followers);
+        $stmt_get_followers->bind_param("i", $user_id);
+        $stmt_get_followers->execute();
+        $result_get_followers = $stmt_get_followers->get_result();
+        
+        // Insert notification for each follower
+        while ($follower_row = $result_get_followers->fetch_assoc()) {
+            $follower_user_id = $follower_row['follower_id'];
+            $stmt_notification->bind_param("si", $notification_content, $follower_user_id);
+            $stmt_notification->execute();
+        }
+        
         if($from_draft) {
             $delete_draft = "DELETE FROM draft_posts WHERE draft_id = $draft_id";
             if ($con->query($delete_draft) === TRUE) {
@@ -93,6 +108,7 @@ $con->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Saved</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 </head>
 <body>
     
@@ -100,17 +116,17 @@ $con->close();
     
     <div class="all-posts-container">
         <h1>Uploaded</h1>
-    <!-- <div class="post-container"> -->
+    <div class="post-container">
         <br>
-        <span style='font-weight: bold;' id='displayTitle'><?php echo $title ?></span>
+        <span style='font-weight: bold;' id='display-title'><?php echo $title ?></span>
         <br>
-        <span><?php echo "Category: " . $category; ?></span>
+        <span><?php echo "Category: " . ucfirst($category); ?></span>
         <br>
-        <center><img id='displayImage' src="../images/<?php echo $filename; ?>" alt="image"></center>
+        <center><img id='display-image' src="../images/<?php echo $filename; ?>" alt="image"></center>
         <br>
-        <span id='displayPara'><?php echo $description; ?></span>
+        <span id='display-para'><?php echo $description; ?></span>
         <br><br>
-    <!-- </div> -->
+    </div>
     </div>
 </body>
 </html>

@@ -34,7 +34,7 @@ if(isset($_POST['email'])) {
         }
     } 
 } else {
-    echo "Email not provided.";
+    echo "<center>Email not provided.</center>";
 }
 
 ?>
@@ -52,11 +52,10 @@ if(isset($_POST['email'])) {
 
 <body>
     <div class="container">
-        <div class="welcome">
-            <h2>Enter your registered Email</h2>
-        </div>
 
+        
         <div class="wrapper">
+            <div class="title"><span> Enter registered Email </span></div>
             <form name="forgot-password" method="post">
                 <div class="row">
                     <i class="fas fa-envelope"></i>
@@ -71,7 +70,7 @@ if(isset($_POST['email'])) {
         <br>
         <?php
             if($not_registered) {
-                echo "<div>Please enter a registered email address.</div>";
+                echo "<center>Please enter a registered email address.</center>";
             }
             ?>
     </div>

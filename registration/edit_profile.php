@@ -106,24 +106,29 @@ $con->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Profile</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../registration/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 </head>
 <body> 
-    <div class="container">
-        <h2>Edit Profile</h2>
-        <form action="" method="POST" enctype="multipart/form-data">
-            <label for="full_name">Full Name:</label><br>
-            <input type="text" id="full_name" name="full_name"><br><br>
-            
-            <label for="bio">Bio:</label><br>
-            <textarea id="bio" name="bio" rows="4" cols="50"></textarea><br><br>
-            
-            <label for="profile_picture">Profile Picture:</label><br>
-            <input type="file" id="profile_picture" name="profile_picture"><br><br>
-            
-            <input type="submit" value="Submit">
-        </form>
-    </div>
+
+    <?php include '../posts/sidebar.php'; ?>
     
+    <h1>Edit Profile</h1>
+    <div class="edit">
+        <div class="profile-container">
+            <form action="" method="POST" enctype="multipart/form-data">
+                <label for="full_name">Full Name:</label><br>
+                <input type="text" id="full_name" name="full_name"><br><br>
+                
+                <label for="bio">Bio:</label><br>
+                <textarea id="bio" name="bio" rows="5" cols="45"></textarea><br><br>
+                
+                <label for="profile_picture">Profile Picture:</label><br>
+                <input type="file" id="profile_picture" name="profile_picture"><br><br>
+                
+                <input class="profile-btn" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
