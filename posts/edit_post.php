@@ -52,6 +52,7 @@
                 <option value="food">Food</option>
                 <option value="fashion">Fashion</option>
                 <option value="sport">Sport</option>
+                <option value="other">Others</option>
             </select>
             <br><br>
             <button id="save-btn" type="submit">Save Changes</button>

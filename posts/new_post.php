@@ -31,6 +31,7 @@
                 <option value="food">Food</option>
                 <option value="fashion">Fashion</option>
                 <option value="sport">Sport</option>
+                <option value="other">Others</option>
             </select>
             <br>
             <!-- checkbox for draft option -->

@@ -8,7 +8,18 @@
 body {
   margin: 0;
   word-wrap: break-word;
-  background: linear-gradient(to right, #34db8d, #bae2c0, #34db8d);
+  background: linear-gradient(90deg, #34db8d, #bae2c0, #34db8d 100%);
+	background-size: 400% 400%;
+	animation: gradient 3s infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 100%;
+	}
+	100% {
+		background-position: 100% 0%;
+	}
 }
 
 .top-bar {

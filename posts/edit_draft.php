@@ -51,6 +51,7 @@ if (isset($_GET['draft_id'])) {
             <option value="food">Food</option>
             <option value="fashion">Fashion</option>
             <option value="sport">Sport</option>
+            <option value="other">Others</option>
         </select>
         <br><br>
         <!-- checkbox for draft option -->

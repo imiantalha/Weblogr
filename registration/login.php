@@ -34,7 +34,7 @@ if (isset($_POST['username'])) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
-            if (!$row['is_verified']) {
+            if ($row['is_verified']) {
                 $_SESSION["username"] = $username;
                 $_SESSION["user_id"] = $row['user_id'];
                 // Redirect on successful login

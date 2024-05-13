@@ -15,6 +15,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="index.js"></script>
     <link rel="stylesheet" href="../posts/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
 </head>
@@ -32,7 +33,7 @@
             <?php echo $manage_posts ?>
             <?php echo $manage_reports ?>
             <li><a href="../posts/notifications.php" style="display:inline-block; margin-left:5px;"><i class="fas fa-bell fa-2x" title="Notifications"></i></a></li>
-            <li><a href="logout.php" style="display:inline-block; margin-left:5px;"><i class="fas fa-sign-out-alt fa-2x" title="Log Out"></i></a></li>
+            <li><a href="logout.php" style="display:inline-block; margin-left:5px;" onclick="return confirmLogout();"><i class="fas fa-sign-out-alt fa-2x" title="Log Out"></i></a></li>
         </ul>
     </div>
 </body>

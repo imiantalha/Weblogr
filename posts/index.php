@@ -14,6 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weblogr</title>
+    <script src="index.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <script src="../scripts/script.js"></script>
@@ -34,6 +35,7 @@
                 <option value="food">Food</option>
                 <option value="fashion">Fashion</option>
                 <option value="sport">Sports</option>
+                <option value="other">Others</option>
             </select>
 
             <!-- Dropdown for filtering by username -->
@@ -77,7 +79,7 @@
         <?php
 
         // Default SQL query to fetch all blog posts
-        $sql = "SELECT b.blog_id, b.title, b.created_date, b.image, b.description, b.user_id, u.username 
+        $sql = "SELECT b.blog_id, b.title, b.created_date, b.image, b.description, b.likes, b.user_id, u.username 
                 FROM blogs b 
                 JOIN users u ON b.user_id = u.user_id";
 
@@ -136,7 +138,7 @@
                 echo "</div>";
                 echo "<p id='display-para'><a href='blog_poster.php?user_id=" . $row['user_id'] . "'>@" . $row['username'] . "</a>: " . $row["description"] . "</p>";
                 echo "<div class='like-button'>";
-                echo "<a href='../comments/likes.php?blog_id=" . $row['blog_id'] . "'><i class='fas fa-thumbs-up fa-2x' title='Like'></i></a>";
+                echo '<a href="#" onclick="likeBlog(' . $row["blog_id"] . '); return false;"><i class="fas fa-thumbs-up fa-2x" title="Like ' . $row["likes"] . '"></i></a>';
                 echo "<a href='../comments/comments.php?blog_id=" . $row['blog_id'] . "' style='margin-left:15px'><i class='fas fa-comment fa-2x' title='Comment'></i></a>";
                 echo "</div>";
                 echo "</div>";                
@@ -150,12 +152,6 @@
     </div>
     <br>
 </div>
-
-<script>
-    function confirmDelete() {
-        return confirm("Are you sure you want to delete this post?");
-    }
-</script>
 
 </body>
 </html>

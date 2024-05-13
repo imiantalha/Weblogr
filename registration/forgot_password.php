@@ -53,9 +53,8 @@ if(isset($_POST['email'])) {
 <body>
     <div class="container">
 
-        
         <div class="wrapper">
-            <div class="title"><span> Enter registered Email </span></div>
+            <div class="title"> Registered Email </div>
             <form name="forgot-password" method="post">
                 <div class="row">
                     <i class="fas fa-envelope"></i>
